@@ -29,13 +29,10 @@
 #include <WiFiManager.h>
 
 //--------- Configuration
-// WiFi
-//const char* ssid = "IoT";
-//const char* password = "55aa44bb33cc22dd11ee";
 //MQTT
-const char* mqttServer = "m23.cloudmqtt.com";
-const char* mqttUser = "sgpjlnfw";
-const char* mqttPass = "UwGiZrpG9uBS";
+const char* mqttServer = "----------";
+const char* mqttUser = "----------";
+const char* mqttPass = "----------";
 const char* mqttClientName = "SDM120"; //will also be used hostname and OTA name
 const char* mqttTopicPrefix = "sensEnergy/SDM120/";
 const long mqttport = 15288;
@@ -79,7 +76,6 @@ void setup() {
   sprintf(mqttTopicFreq, "%sfreq", mqttTopicPrefix);
   sprintf(mqttTopicTotEner, "%stotener", mqttTopicPrefix);
 
-  //setup_wifi();
   // WiFiManager
   WiFiManager wifiManager;
   wifiManager.autoConnect("SDM120W","123456");
@@ -171,23 +167,6 @@ void meassureSDM() {
   debugA("\nVoltage:   %sV\nCurrent:   %sA\nPower:     %sW\nFrequency: %sHz\n Energy: %skWh\n", String(v, 2).c_str(), String(c, 2).c_str(), String(p, 2).c_str(), String(f, 2).c_str(), String(te, 2).c_str());
 
 }
-
-// void setup_wifi() {
-//   delay(10);
-//   rdebugA("Connecting to ");
-//   //rdebugAln(ssid);
-//   WiFi.mode(WIFI_STA); //disable AP mode, only station
-//   WiFi.hostname(mqttClientName);
-//   WiFi.begin(ssid, password);
-//   while (WiFi.status() != WL_CONNECTED) {
-//     delay(500);
-//     Serial.print(".");
-//   }
-//   rdebugA("");
-//   rdebugA("WiFi connected");
-//   rdebugA("IP address: ");
-//   //rdebugAln(WiFi.localIP());
-// }
 
 bool MqttReconnect() {
   if (!mqttClient.connected()) {
